@@ -1,5 +1,7 @@
 package com.wwzhang.rxjava2demo.presenter;
 
+import android.os.Handler;
+
 import com.wwzhang.rxjava2demo.base.BasePresenter;
 
 import java.util.Arrays;
@@ -14,7 +16,15 @@ public class RxDemoPresenter extends BasePresenter<RxDemoView> {
     @Override
     public void onStart() {
         view.showLoading("loading");
-        view.setDemoData(Arrays.asList(data));
-        view.hideLoading();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                view.setDemoData(Arrays.asList(data));
+                view.hideLoading();
+            }
+        },1000);
+
+
     }
 }

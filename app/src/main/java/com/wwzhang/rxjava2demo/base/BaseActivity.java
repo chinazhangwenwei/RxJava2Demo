@@ -1,8 +1,12 @@
 package com.wwzhang.rxjava2demo.base;
 
 import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+
 
 
 /**
@@ -11,7 +15,13 @@ import android.widget.Toast;
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
     private ProgressDialog progressDialog;
+    public Handler handler;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        handler = new Handler();
+    }
 
     @Override
     public void showLoading(String text) {
@@ -44,5 +54,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
+    }
 }

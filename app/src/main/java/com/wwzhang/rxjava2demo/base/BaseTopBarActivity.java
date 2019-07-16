@@ -32,6 +32,8 @@ public abstract class BaseTopBarActivity extends BaseActivity {
         toolBar = findViewById(R.id.toolbar);
         viewContent = findViewById(R.id.content_container);
         setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         LayoutInflater.from(this).inflate(getLayoutId(), viewContent);
         initView();
 
@@ -40,8 +42,9 @@ public abstract class BaseTopBarActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            if (onTitleClickRight != null) {
-                onTitleClickRight.click();
+            finish();
+            if (onTitleClickLeft != null) {
+                onTitleClickLeft.click();
             }
 
         } else if (item.getItemId() == R.id.menu_1) {
@@ -94,7 +97,7 @@ public abstract class BaseTopBarActivity extends BaseActivity {
     }
 
 
-    interface OnTitleClick {
+    public interface OnTitleClick {
 
         void click();
     }

@@ -27,7 +27,7 @@ public class RxDemoAdapter extends RecyclerView.Adapter<RxDemoAdapter.RxDemoView
     @Override
     public RxDemoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.activity_rx_demo_item, viewGroup);
+                .inflate(R.layout.activity_rx_demo_item, viewGroup,false);
         return new RxDemoViewHolder(view);
     }
 

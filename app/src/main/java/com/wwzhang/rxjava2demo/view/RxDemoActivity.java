@@ -20,12 +20,16 @@ public class RxDemoActivity extends BaseMvpTopBarActivity<RxDemoPresenter> imple
     private RxDemoAdapter rxDemoAdapter;
 
 
+
     @Override
     protected void initView() {
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        setTitle("RxJavaDemo");
+
 
     }
+
 
     @Override
     public int getLayoutId() {
@@ -34,13 +38,15 @@ public class RxDemoActivity extends BaseMvpTopBarActivity<RxDemoPresenter> imple
 
 
     @Override
-    public void setDemoData(List<String> data) {
+    public void setDemoData(final List<String> data) {
+
         if (rxDemoAdapter == null) {
             rxDemoAdapter = new RxDemoAdapter(data);
             recyclerView.setAdapter(rxDemoAdapter);
         } else {
             rxDemoAdapter.notifyDataSetChanged();
         }
+
     }
 
     @Override

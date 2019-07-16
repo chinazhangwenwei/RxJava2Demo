@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Explode;
+import android.transition.Slide;
 import android.widget.Toast;
 
 
@@ -21,6 +23,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         handler = new Handler();
+        getWindow().setEnterTransition(new Explode().setDuration(300));
+        getWindow().setReturnTransition(new Slide().setDuration(300));
     }
 
     @Override

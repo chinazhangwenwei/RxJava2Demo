@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wwzhang.rxjava2demo">
 
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -10,17 +13,18 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".view.SplashActivity"
-            android:theme="@style/AppTheme.Splash"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.wwzhang.rxjava2demo.view.RxDemoActivity">
+        <activity android:name="com.wwzhang.rxjava2demo.view.RxDemoActivity" />
 
-        </activity>
+        <activity android:name="com.wwzhang.rxjava2demo.view.RxJustDemoActivity" />
+
     </application>
 
 </manifest>

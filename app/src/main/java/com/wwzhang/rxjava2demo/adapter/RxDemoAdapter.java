@@ -18,6 +18,13 @@ public class RxDemoAdapter extends RecyclerView.Adapter<RxDemoAdapter.RxDemoView
 
     private List<String> data;
 
+    public void setOnItemClick(OnItemClick onItemClick) {
+        this.onItemClick = onItemClick;
+    }
+
+    private OnItemClick onItemClick;
+
+
     public RxDemoAdapter(List<String> data) {
         this.data = data;
     }
@@ -27,13 +34,21 @@ public class RxDemoAdapter extends RecyclerView.Adapter<RxDemoAdapter.RxDemoView
     @Override
     public RxDemoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.activity_rx_demo_item, viewGroup,false);
+                .inflate(R.layout.activity_rx_demo_item, viewGroup, false);
         return new RxDemoViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RxDemoViewHolder rxDemoViewHolder, int i) {
+    public void onBindViewHolder(@NonNull RxDemoViewHolder rxDemoViewHolder, final int i) {
         rxDemoViewHolder.tvTitle.setText(data.get(i));
+        rxDemoViewHolder.tvTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClick != null) {
+                    onItemClick.onItemClick(data.get(i));
+                }
+            }
+        });
 
     }
 
@@ -51,5 +66,10 @@ public class RxDemoAdapter extends RecyclerView.Adapter<RxDemoAdapter.RxDemoView
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_title);
         }
+    }
+
+    public interface OnItemClick {
+
+        void onItemClick(String content);
     }
 }
